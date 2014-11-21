@@ -1,5 +1,6 @@
 package com.jaredstewart
 /*************************************************************************
+ *  See: http://introcs.cs.princeton.edu/java/92symbolic/Polynomial.java.html
  *  Compilation:  javac com.jaredstewart.Polynomial.java
  *  Execution:    java com.jaredstewart.Polynomial
  *
@@ -22,6 +23,15 @@ package com.jaredstewart
 public class Polynomial {
     private int[] coef;  // coefficients
     private int deg;     // degree of polynomial (0 for the zero polynomial)
+
+
+    public Polynomial(List<Integer> coeffs) {
+            int[] ret = new int[coeffs.size()];
+            for(int i = 0;i < ret.length;i++)
+                ret[i] = coeffs.get(i);
+            coef =  ret;
+            deg = coeffs.size() -1;
+    }
 
     // a * x^b
     public Polynomial(int a, int b) {
@@ -112,7 +122,7 @@ public class Polynomial {
     // convert to string representation
     public String toString() {
         if (deg ==  0) return "" + coef[0];
-        if (deg ==  1) return coef[1] + "x + " + coef[0];
+        if (deg ==  1) return coef[1] + "x" + (coef[0] != 0 ? + " + " + coef[0] : "");
         String s = coef[deg] + "x^" + deg;
         for (int i = deg-1; i >= 0; i--) {
             if      (coef[i] == 0) continue;

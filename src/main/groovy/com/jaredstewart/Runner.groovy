@@ -27,6 +27,7 @@ class Runner {
                 polynomial += "+$coeff x^$i" }
         }
 
-        System.out.print polynomial
+        System.out.print new Polynomial(coeffs).toString()
+
     }
 }
